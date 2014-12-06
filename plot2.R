@@ -7,8 +7,6 @@
 ####################################################################################################
 
 plot2 <- function() {
-    require(dplyr)
-    
     # Read the data.
     plot_data <- read.table("household_power_consumption.txt", sep=";", quote="\"")
     
@@ -20,8 +18,10 @@ plot2 <- function() {
     datetime = strptime(plot_data$date_time, "%Y-%m-%d %H:%M:%S")
     
     # Plot the points.
+    png(filename="plot2.png")
     par(mfrow = c(1, 1), mar = c(4, 4, 2, 1), oma = c(0, 0, 2, 0))
     with(plot_data,  {
         plot(datetime, as.numeric(as.character(V3)), type="l", col="black", xlab="", ylab="Global Active Power")
-    })        
+    })
+    dev.off()
 }

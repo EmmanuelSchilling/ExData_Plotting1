@@ -7,8 +7,6 @@
 ####################################################################################################
 
 plot3 <- function() {
-    require(dplyr)
-    
     # Read the data.
     plot_data <- read.table("household_power_consumption.txt", sep=";", quote="\"")
     
@@ -20,6 +18,7 @@ plot3 <- function() {
     datetime = strptime(plot_data$date_time, "%Y-%m-%d %H:%M:%S")
     
     # Plot the points.
+    png(filename="plot3.png")
     par(mfrow = c(1, 1), mar = c(4, 4, 2, 1), oma = c(0, 0, 2, 0))
     with(plot_data,  {
         plot(datetime, as.numeric(as.character(V7)), type="l", col="black", xlab="", ylab="Energy sub metering", mar=c(0, 4, 0, 0))
@@ -27,5 +26,6 @@ plot3 <- function() {
         lines(datetime, as.numeric(as.character(V9)), col="blue")
         legend("topright", legend=c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'), lty=1, col=c('black', 'red', 'blue'))
     })
+    dev.off()
 }    
     
