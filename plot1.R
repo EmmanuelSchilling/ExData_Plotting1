@@ -12,7 +12,7 @@
 plot1 <- function() {
     # Read the data.
     plot_data <- read.table("household_power_consumption.txt", sep=";", quote="\"")
-    str(plot_data)
+    
     # Filter to the dates of interest.
     plot_data <- filter(plot_data, V1 == '1/2/2007' | V1 == '2/2/2007')
     
